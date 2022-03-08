@@ -1,5 +1,5 @@
 export interface pigdataTW {
-  交易日期: string;
+  交易日期: number;
   市場名稱: string;
   '成交頭數-總數': string;
   '成交頭數-平均重量': string;

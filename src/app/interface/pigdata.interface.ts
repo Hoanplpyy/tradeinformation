@@ -1,5 +1,5 @@
 export interface pigdata {
-  date: string;
+  date: number;
   market: string;
   averageUnit: string;
   averageWeight: string;
