@@ -1,10 +1,19 @@
 .img_size{
   width: 30%;
 }
-
-
 .container-size{
-
   width: 200px;
   height: 800px;
 }
+
+.outBC{
+  background-color: darkgrey;
+}
+
+.inBC{
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+
