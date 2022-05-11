@@ -1,19 +1,26 @@
 <div class="container-size outBC ">
-  <div class="inBC container-size border">
-    <div class="container">
-      <div class="text-center">
-        <img [src]="imagePath" class="rounded img_size" alt="Responsive image">
+  <div class="container-size border inBC ">
+    <div>
+      <div class="logo-position text-center">
+        <img src="https://img.icons8.com/ios/50/000000/elephant.png" />
       </div>
-      <div class="row">
-        <ul class="list-group">
-          <li class="list-group-item active">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+      <div class="list-position">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" aria-current="true" *ngFor="let item of items; let i = index"
+            (click)="activateClass(i)">
+
+            <div class="row containerOfLink">
+              <div [ngClass]="item.active ? 'triangle_color':'triangle'" class="col-sm-4">
+              </div>
+              <div class="col-sm-6">
+                <a routerLink="{{item.link}}">
+                  <img [src]="item.imagePath" class="rounded" alt="Responsive image">
+                </a>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </div>
-
 </div>

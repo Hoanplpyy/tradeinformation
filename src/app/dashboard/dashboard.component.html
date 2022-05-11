@@ -1,1 +1,66 @@
-<p>dashboard works!</p>
+<div class="container">
+  <div class="row dashboard-title-position">
+    <div class="col-sm-6">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="col-sm-6">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text material-icons md-18">search</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+          aria-describedby="basic-addon1">
+        <div class="input-group-prepend">
+          <span class="input-group-text material-icons">
+            manage_search
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row dashboard-main-position">
+    <div class="col-sm-2">
+        <button  mat-button color="primary" class="icon_button">
+          <mat-icon> restaurant</mat-icon>
+          <span class="icon_text">PIG Data</span>
+        </button>
+    </div>
+    <div class="col-sm-2">
+      <button  mat-button color="primary" class="icon_button">
+        <mat-icon> local_bar</mat-icon>
+        <span class="icon_text">PIG Data</span>
+      </button>
+    </div>
+    <div class="col-sm-2">
+      <button  mat-button color="primary" class="icon_button">
+        <mat-icon> local_cafe</mat-icon>
+        <span class="icon_text">PIG Data</span>
+      </button>
+    </div>
+    <div class="col-sm-2">
+      <button  mat-button color="primary" class="icon_button">
+        <mat-icon> local_grocery_store</mat-icon>
+        <span class="icon_text">PIG Data</span>
+      </button>
+    </div>
+    <div class="col-sm-2">
+      <button  mat-button color="primary" class="icon_button">
+        <mat-icon>child_friendly</mat-icon>
+        <span class="icon_text">PIG Data</span>
+      </button>
+    </div>
+
+    <div class="col-sm-2">
+      <button mat-button color="primary" class="icon_button">
+        <mat-icon>smoke_free</mat-icon>
+        <span class="icon_text">PIG Data</span>
+    </button>
+
+    </div>
+  </div>
+  <div class="row">
+        <app-pigtradeinformation></app-pigtradeinformation>
+  </div>
+
+</div>

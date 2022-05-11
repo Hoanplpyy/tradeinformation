@@ -20,12 +20,10 @@ export class PigtradeinformationComponent implements OnInit {
   chartData = {
     type: ChartType.LineChart,
     data: [
-      ["PHP Books", 500],
-      [".Net Books", 800],
-      ["Java Books", 400],
+      ["",]
     ],
     chartColumns: ['Books', 'Sell'],
-    width: 1000,
+    width: 500,
     height: 400
   };
   constructor(private http: HttpgetService) { }
@@ -99,7 +97,7 @@ export class PigtradeinformationComponent implements OnInit {
           type: ChartType.LineChart,
           data: data,
           chartColumns: ['Date','Price'],
-          width: 1500,
+          width: 500,
           height: 500
         };
       }

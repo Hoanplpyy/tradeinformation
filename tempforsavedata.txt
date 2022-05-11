@@ -1,42 +1,49 @@
+<div class="container-size outBC ">
+  <div class="container-size border inBC ">
+    <div class="container inner_container_position">
+      <div class="logo_position">
+        <img src="https://img.icons8.com/ios/50/000000/elephant.png" />
+      </div>
+      <div class="list-position">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" aria-current="true" *ngFor="let item of items; let i = index"
+            (click)="activateClass(i)">
+          <div class="containerOfLink">
+            <div *ngIf="item.active" class="triangle elementV">
+            </div>
+            <div>
+              <a href="{{item.link}}" >
+                <img [src]="item.imagePath" class="rounded text-center" alt="Responsive image">
+              </a>
+            </div>
+          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 /* 設定navigation bar的尺寸 */
 .container-size {
-
   width: 200px;
-  height: 750px;
+  height: 800px;
 }
-
 
 /* 設定navigation bar的背板背景顏色 */
 .outBC {
   background-color: darkgrey;
-
 }
 /* 設定navigation bar的前版背景顏色，和設定邊角有弧度 */
 .inBC {
   background-color: white;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-
-}
-/* 設定logo和邊界的距離*/
-.logo-position{
-  margin-top: 30px;
-}
-/* 設定list和logo的距離*/
-.list-position{
-  margin-top: 50px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 /* 設定向右的箭頭，google div triangle */
 .triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px 0 10px 20px;
-  border-color: transparent transparent transparent transparent;
-}
-
-.triangle_color{
   width: 0;
   height: 0;
   border-style: solid;
@@ -59,13 +66,13 @@ li {
   position:absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 1;
+  left: 1;
+  right: 0;
   margin: auto;
   height: 15px; /*requires explicit height*/
 }
 
-/* .inner_container_position{
+.inner_container_position{
   position: relative;
 }
 
@@ -82,5 +89,6 @@ li {
   top: 150px;
   left:70px;
   text-align: center;
-} */
+}
+
 

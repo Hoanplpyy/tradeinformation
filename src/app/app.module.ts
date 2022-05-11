@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardInformationComponent } from './dashboard-information/dashboard-information.component';
 import { SettingComponent } from './setting/setting.component';
 import { NewsComponent } from './news/news.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { NewsComponent } from './news/news.component';
     HttpClientModule,
     GoogleChartsModule,
     NgbModule,
-
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
