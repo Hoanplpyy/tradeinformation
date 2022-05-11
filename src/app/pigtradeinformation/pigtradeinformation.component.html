@@ -1,10 +1,11 @@
-<p>pigtradeinformation works!</p>
+<div class="container">
+  <div class="row">
+    <google-chart [type]="chartData.type" [data]="chartData.data" [columns]="chartData.chartColumns"
+      [width]="chartData.width" [height]="chartData.height">
+    </google-chart>
 
-<google-chart
-    [type]="chartData.type"
-    [data]="chartData.data"
-    [columns]="chartData.chartColumns"
-    [width]="chartData.width"
-    [height]="chartData.height">
+    <mat-progress-spinner *ngIf="stillReading" [color]="'accent'" [mode]="'indeterminate'">
+    </mat-progress-spinner>
 
-</google-chart>
+  </div>
+</div>

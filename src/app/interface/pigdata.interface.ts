@@ -1,4 +1,4 @@
-export interface pigdata {
+export interface pigData {
   date: number;
   market: string;
   averageUnit: string;
