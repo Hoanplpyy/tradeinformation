@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GoogleChartsModule } from 'angular-google-charts';
+import { GoogleChartsModule, GOOGLE_CHARTS_LAZY_CONFIG } from 'angular-google-charts';
 import { PigtradeinformationComponent } from './pigtradeinformation/pigtradeinformation.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +14,7 @@ import { SettingComponent } from './setting/setting.component';
 import { NewsComponent } from './news/news.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared.module';
+import { googleChartsConfigFactory, GoogleChartsConfigService } from './googleChart.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,11 @@ import { SharedModule } from './shared.module';
     BrowserAnimationsModule,
     SharedModule
   ],
-  providers: [],
+   providers: [
+    //GoogleChartsConfigService
+  //   ,
+  //   { provide: GOOGLE_CHARTS_LAZY_CONFIG, useFactory: googleChartsConfigFactory, deps: [GoogleChartsConfigService] }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
