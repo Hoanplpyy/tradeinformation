@@ -1,5 +1,6 @@
 export interface linkStructure {
-  imagePath: string,
+  imagePathT: string,
+  imagePathF: string,
   link: string,
   active: boolean
 }

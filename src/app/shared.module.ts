@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import {MatListModule} from '@angular/material/list';
 import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
@@ -26,6 +26,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatListModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,

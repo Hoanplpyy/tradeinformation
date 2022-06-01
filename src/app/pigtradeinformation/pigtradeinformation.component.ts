@@ -69,11 +69,11 @@ export class PigtradeinformationComponent implements OnInit ,OnDestroy {
 
     this.startDate = this.setStartDate(new Date());
 
-    this.http.getData(this.pigUrl).subscribe(
-      data=>{
-        console.log(data)
-      }
-    )
+    // this.http.getData(this.pigUrl).subscribe(
+    //   data=>{
+    //     console.log(data)
+    //   }
+    // )
 
 
     // this.chartData = {

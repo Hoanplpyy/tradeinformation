@@ -1,33 +1,54 @@
-<!-- <div class="container-size outBC sidebar ">
-  <div class="container-size border inBC ">
-    <div>
-      <div class="logo-position text-center">
-        <img [src]="items[0].imagePath" />
-      </div>
-      <div class="list-position">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" aria-current="true" *ngFor="let item of items; let i = index"
-            (click)="activateClass(i)">
+<div class="container-out">
+  <div class="container-in" fxLayout="column" fxLayoutAlign="space-around center" fxLayout.xs="row">
 
-            <div class="row containerOfLink">
-              <div [ngClass]="item.active ? 'triangle_color':'triangle'" class="col-sm-4">
-              </div>
-              <div class="col-sm-6">
-                <a routerLink="{{item.link}}">
-                  <img [src]="item.imagePath" class="rounded" alt="Responsive image">
-                </a>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayout.xs="row">
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img [src]="arrowPath" class="logo-img" />
+
     </div>
+
+    <div fxLayout="column" fxHide.lt-sm >
+      <mat-nav-list *ngFor="let item of items; let i = index">
+
+        <a routerLink="{{item.link}}" mat-list-item routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{exact:true}" routerLinkActive #rla="routerLinkActive">
+          <!-- <img class="nav-img" [src]="rla.isActive ? item.imagePathT : item.imagePathF" class="round" alt="Responsive image"> -->
+          <p>test1</p>
+        </a>
+      </mat-nav-list>
+    </div>
+
+    <mat-sidenav-container fxFlexFill>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+          <a href="#" mat-list-item>Menu Item 1</a>
+          <a href="#" mat-list-item>Menu Item 2</a>
+          <a href="#" mat-list-item>Menu Item 3</a>
+          <a href="#" mat-list-item>Menu Item 4</a>
+          <a href="#" mat-list-item>Menu Item 5</a>
+          <a href="#" mat-list-item>Menu Item 6</a>
+        </mat-nav-list>
+      </mat-sidenav>
+
+    </mat-sidenav-container>
+  </div>
+</div>
+
+<!--
+<div class="container" fxLayout="column" fxLayout.md="row" fxLayoutGap="20px">
+  <div class="cardWrap" fxLayout.lt-md="column" fxLayout.md="column" fxLayout="row" fxFlex.md="50"
+    fxLayoutAligmnet="space-between center" fxLayoutGap="20px">
+    <div fxFlex.lt-md="50" fxFlex="35">Card</div>
+    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
+    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
+  </div>
+  <div class="cardWrap" fxLayout.lt-md="column" fxLayout.md="column" fxLayout="row" fxFlex.md="50"
+    fxLayoutAligmnet="space-between center" fxLayoutGap="20px">
+    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
+    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
+    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
   </div>
 </div> -->
-
-<div class="sidebar">
-  <a class="active" href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-</div>

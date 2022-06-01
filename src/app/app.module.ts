@@ -15,6 +15,7 @@ import { NewsComponent } from './news/news.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared.module';
 import { googleChartsConfigFactory, GoogleChartsConfigService } from './googleChart.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { googleChartsConfigFactory, GoogleChartsConfigService } from './googleCh
     GoogleChartsModule,
     BrowserAnimationsModule,
     SharedModule,
-
+    FlexLayoutModule
   ],
    providers: [
     //GoogleChartsConfigService
