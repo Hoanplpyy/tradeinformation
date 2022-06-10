@@ -11,14 +11,25 @@
   } */
 
   .logo-img {
-    max-width: 30%;
+    max-width: 40%;
     height: auto;
   }
-  .nav-img{
+
+  .nav-img {
     max-width: 100%;
     height: auto;
   }
+
   /* .container .cardWrap div{
     height: 300px;
     border:2px solid gray;
     } */
+
+  .in-container {
+
+    border: solid white;
+    background-color: white;
+    border-bottom-left-radius: 40px;
+    border-top-left-radius: 40px;
+
+  }

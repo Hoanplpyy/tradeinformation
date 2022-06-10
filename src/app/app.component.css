@@ -7,6 +7,11 @@
   margin-top: 15px;
 }
  */
+.out-container {
+
+  background-color: lightgray;
+
+}
 
 .navigation {
   background-color: lightcyan;
@@ -20,11 +25,10 @@
   background-color: lightsalmon;
 }
 
-.setting{
+.setting {
   background-color: lightblue;
 }
 
-.news{
+.news {
   background-color: lightgreen;
 }
-

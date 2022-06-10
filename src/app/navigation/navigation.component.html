@@ -2,15 +2,11 @@
   <div class="container-in" fxLayout="column" fxLayoutAlign="space-around center" fxLayout.xs="row">
     <div fxLayout="column" fxLayoutAlign="space-around center" fxLayout.xs="row">
       <button mat-icon-button  fxShow="true" fxHide.gt-sm    (click)="sidenav.toggle()">
-
         <mat-icon>menu</mat-icon>
       </button>
-
     </div>
-
     <div fxLayout="column" fxHide.lt-sm >
       <mat-nav-list *ngFor="let item of items; let i = index">
-
         <a routerLink="{{item.link}}" mat-list-item routerLinkActive="active-link"
           [routerLinkActiveOptions]="{exact:true}" routerLinkActive #rla="routerLinkActive">
           <img class="nav-img" [src]="rla.isActive ? item.imagePathT : item.imagePathF" class="round" alt="Responsive image">
@@ -36,6 +32,8 @@
     <div fxFlex.lt-md="100" fxFlex="35">Card</div>
   </div>
 </div> -->
+
+<!--
 <div style="height: 80vh;">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
@@ -50,7 +48,7 @@
       <span>Responsive Navigation</span>
       <span class="menu-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
-        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+
         <a href="#" mat-button>Menu Item A</a>
         <a href="#" mat-button>Menu Item B</a>
         <a href="#" mat-button>Menu Item C</a>
@@ -75,4 +73,23 @@
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
   </mat-sidenav-container>
+</div> -->
+<div class="in-container" fxLayout="column" fxLayoutAlign="space-around center" fxFlex="100" fxFlex.sm="100" fxFlex.xs="100">
+  <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="10">
+    <img src="{{arrowPath}}" alt="" class="logo-img">
+  </div>
+
+  <div fxLayout="column" fxFlex="90">
+
+    <mat-nav-list *ngFor="let item of items; let i = index">
+      <a routerLink="{{item.link}}" mat-list-item routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact:true}" routerLinkActive #rla="routerLinkActive">
+        <img class="nav-img" [src]="rla.isActive ? item.imagePathT : item.imagePathF" class="round" alt="Responsive image">
+
+      </a>
+    </mat-nav-list>
+
+  </div>
+
+
 </div>
