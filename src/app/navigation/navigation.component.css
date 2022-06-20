@@ -11,7 +11,7 @@
   } */
 
   .logo-img {
-    max-width: 40%;
+    width: 55%;
     height: auto;
   }
 
@@ -26,10 +26,15 @@
     } */
 
   .in-container {
-
     border: solid white;
     background-color: white;
+  }
+
+  .set-xs-sm-width{
+    min-width: 100vw;
+  }
+  .set-corner-border{
     border-bottom-left-radius: 40px;
     border-top-left-radius: 40px;
-
+    min-height: 100vh;
   }

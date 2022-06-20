@@ -1,95 +1,28 @@
-<!-- <div class="container-out">
-  <div class="container-in" fxLayout="column" fxLayoutAlign="space-around center" fxLayout.xs="row">
-    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayout.xs="row">
-      <button mat-icon-button  fxShow="true" fxHide.gt-sm    (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <div fxLayout="column" fxHide.lt-sm >
-      <mat-nav-list *ngFor="let item of items; let i = index">
-        <a routerLink="{{item.link}}" mat-list-item routerLinkActive="active-link"
-          [routerLinkActiveOptions]="{exact:true}" routerLinkActive #rla="routerLinkActive">
-          <img class="nav-img" [src]="rla.isActive ? item.imagePathT : item.imagePathF" class="round" alt="Responsive image">
-          <p>test1</p>
-        </a>
-      </mat-nav-list>
-    </div>
-  </div>
-</div> -->
+<div class="in-container set-corner-border" [ngClass.sm]="{'set-corner-border':false,'set-xs-sm-width':true}"
+  [ngClass.xs]="{'set-corner-border':false,'set-xs-sm-width':true}" fxLayout="column" fxLayout.sm="row" fxLayout.xs="row"
+  fxLayoutAlign="space-around center" fxFlex="100" fxFlex.sm="100" fxFlex.xs="100">
 
-<!--
-<div class="container" fxLayout="column" fxLayout.md="row" fxLayoutGap="20px">
-  <div class="cardWrap" fxLayout.lt-md="column" fxLayout.md="column" fxLayout="row" fxFlex.md="50"
-    fxLayoutAligmnet="space-between center" fxLayoutGap="20px">
-    <div fxFlex.lt-md="50" fxFlex="35">Card</div>
-    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
-    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
-  </div>
-  <div class="cardWrap" fxLayout.lt-md="column" fxLayout.md="column" fxLayout="row" fxFlex.md="50"
-    fxLayoutAligmnet="space-between center" fxLayoutGap="20px">
-    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
-    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
-    <div fxFlex.lt-md="100" fxFlex="35">Card</div>
-  </div>
-</div> -->
 
-<!--
-<div style="height: 80vh;">
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button
-        mat-icon-button
-        (click)="sidenav.toggle()"
-        fxShow="true"
-        fxHide.gt-sm
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>Responsive Navigation</span>
-      <span class="menu-spacer"></span>
-      <div fxShow="true" fxHide.lt-md>
+  <!-- <mat-icon fxShow fxHide fxHide.sm >menu</mat-icon> -->
+  <img fxFlex="15" fxShow fxHide.sm fxHide.xs class="logo-img" src="{{arrowPath}}" alt="">
 
-        <a href="#" mat-button>Menu Item A</a>
-        <a href="#" mat-button>Menu Item B</a>
-        <a href="#" mat-button>Menu Item C</a>
-        <a href="#" mat-button>Menu Item D</a>
-        <a href="#" mat-button>Menu Item E</a>
-        <a href="#" mat-button>Menu Item F</a>
-      </div>
-    </mat-toolbar-row>
-  </mat-toolbar>
 
-  <mat-sidenav-container fxFlexFill>
-    <mat-sidenav #sidenav>
-      <mat-nav-list>
-        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
-        <a href="#" mat-list-item>Menu Item 1</a>
-        <a href="#" mat-list-item>Menu Item 2</a>
-        <a href="#" mat-list-item>Menu Item 3</a>
-        <a href="#" mat-list-item>Menu Item 4</a>
-        <a href="#" mat-list-item>Menu Item 5</a>
-        <a href="#" mat-list-item>Menu Item 6</a>
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
-  </mat-sidenav-container>
-</div> -->
-<div class="in-container" fxLayout="column" fxLayoutAlign="space-around center" fxFlex="100" fxFlex.sm="100" fxFlex.xs="100">
-  <div fxLayout="column" fxLayoutAlign="space-around center" fxFlex="10">
-    <img src="{{arrowPath}}" alt="" class="logo-img">
-  </div>
 
-  <div fxLayout="column" fxFlex="90">
 
-    <mat-nav-list *ngFor="let item of items; let i = index">
+  <mat-list fxFlex="85" fxLayout="column" fxLayout.sm="row" fxLayout.xs="row">
+    <mat-list-item *ngFor="let item of items; let i = index">
+
       <a routerLink="{{item.link}}" mat-list-item routerLinkActive="active-link"
         [routerLinkActiveOptions]="{exact:true}" routerLinkActive #rla="routerLinkActive">
-        <img class="nav-img" [src]="rla.isActive ? item.imagePathT : item.imagePathF" class="round" alt="Responsive image">
+ <mat-icon>menu</mat-icon>
+        <!-- <img class="nav-img" [src]="rla.isActive ? item.imagePathT : item.imagePathF" class="round"
+          alt="Responsive image"> -->
 
       </a>
-    </mat-nav-list>
+    </mat-list-item>
+  </mat-list>
 
-  </div>
+
 
 
 </div>
