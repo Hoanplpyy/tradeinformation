@@ -13,6 +13,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatListModule} from '@angular/material/list';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   imports: [CommonModule],
@@ -27,6 +28,7 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatIconModule,
     MatDividerModule,
     MatListModule,
+    MatMenuModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
