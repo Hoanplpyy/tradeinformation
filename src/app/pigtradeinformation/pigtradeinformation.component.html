@@ -1,30 +1,24 @@
-<p>pig trade information works</p>
-<!-- <div class="container container-size">
-
-  <div class="row">
 
 
-    <div *ngIf="!stillReading" class="char-region-size">
+
+  <div fxLayout="column" fxFlex="100" fxFlex.sm="100" fxFlex.xs="100" fxLayoutAlign="space-around center"
+      class="in-container">
 
 
+    <div *ngIf="!stillReading" fxLayout="column"  >
 
       <google-chart [options]="myOptions" [type]="chartData.type" [data]="chartData.data" [columns]="chartData.chartColumns"
-        [width]="chartData.width" [height]="chartData.height">
+      style="width: 90%;" [dynamicResize]="true">
       </google-chart>
-      <mat-form-field appearance="outline">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [formGroup]="range"  [rangePicker]="picker">
-          <input matStartDate   formControlName="start" placeholder="Start date">
-          <input matEndDate  (dateInput)="addEvent()" formControlName="end" placeholder="End date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
+
     </div>
+
+
 
     <div *ngIf="stillReading" class="spinner_position">
       <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'">
       </mat-progress-spinner>
     </div>
+
   </div>
-</div> -->
+

@@ -26,8 +26,8 @@
     } */
 
   .in-container {
-    border: solid white;
-    background-color: white;
+    border: solid #fff1f1;
+    background-color: #fff1f1;
   }
 
   .set-xs-sm-width{
