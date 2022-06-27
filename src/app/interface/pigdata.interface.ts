@@ -25,17 +25,19 @@ export interface pigData {
   up155Unit: string;
   up155Weight: string;
   up155Price: string;
-  disuseSexulUnit: string;
-  disuseSexulWeight: string;
-  disuseSexulPrice: string;
+  disuseSexualUnit: string;
+  disuseSexualWeight: string;
+  disuseSexualPrice: string;
   otherPigUnit: string;
   otherPigWeight: string;
   otherPigPrice: string;
   freezeUnit: string;
   freezeWeight: string;
   freezePrice: string;
-  totalNofreezeUnit: string;
-  totalNofreezeWeight: string;
-  totalNofreezePrice: string;
+  totalNoFreezeUnit: string;
+  totalNoFreezeWeight: string;
+  totalNoFreezePrice: string;
+
+
 
 }

@@ -4,6 +4,4 @@ export interface chartTypeSetting {
   type: ChartType.LineChart,
   data: (string | number)[][],
   chartColumns: string[],
-  width: number,
-  height: number
 }

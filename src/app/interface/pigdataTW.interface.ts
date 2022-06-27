@@ -1,4 +1,4 @@
-export interface pigdataTW {
+export interface pigDataTW {
   交易日期: number;
   市場名稱: string;
   '成交頭數-總數': string;

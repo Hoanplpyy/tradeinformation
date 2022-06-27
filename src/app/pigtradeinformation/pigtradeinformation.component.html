@@ -1,24 +1,21 @@
+<div fxLayout="column" fxFlex="100" fxFlex.sm="100" fxFlex.xs="100" fxLayoutAlign="space-around center"
+  class="in-container" ngClass.sm="in-container-sm" ngClass.xs="in-container-xs">
 
 
+  <div *ngIf="!stillReading"  fxLayout="column" fxLayoutAlign="space-around center" fxFlex="100">
 
-  <div fxLayout="column" fxFlex="100" fxFlex.sm="100" fxFlex.xs="100" fxLayoutAlign="space-around center"
-      class="in-container">
-
-
-    <div *ngIf="!stillReading" fxLayout="column"  >
-
-      <google-chart [options]="myOptions" [type]="chartData.type" [data]="chartData.data" [columns]="chartData.chartColumns"
-      style="width: 90%;" [dynamicResize]="true">
-      </google-chart>
-
-    </div>
-
-
-
-    <div *ngIf="stillReading" class="spinner_position">
-      <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'">
-      </mat-progress-spinner>
-    </div>
+    <google-chart  ngClass="chart-size" ngClass.md="chart-size-md" ngClass.sm="chart-size-sm" ngClass.xs="chart-size-xs"
+    [options]="myOptions" [type]="chartData.type" [data]="chartData.data"
+      [columns]="chartData.chartColumns"  [dynamicResize]='true'>
+    </google-chart>
 
   </div>
 
+
+
+  <div *ngIf="stillReading" class="spinner_position">
+    <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'">
+    </mat-progress-spinner>
+  </div>
+
+</div>

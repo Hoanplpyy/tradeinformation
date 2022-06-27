@@ -24,5 +24,34 @@ options hAxis textStyle{
 } */
 
 .in-container{
-  height: 70vh;
+  height: 80vh;
+}
+
+.in-container-sm{
+  height: 72vh;
+}
+
+.in-container-xs{
+  height: 56vh;
+}
+
+
+
+.chart-size{
+  width: 900px;
+  height: 600px;
+}
+.chart-size-md{
+  width: 700px;
+  height: 525px;
+}
+
+.chart-size-sm{
+  width: 600px;
+  height: 450px;
+}
+
+.chart-size-xs{
+  width: 400px;
+  height: 300px;
 }
