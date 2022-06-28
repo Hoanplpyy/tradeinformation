@@ -1,8 +1,10 @@
 import { pigData } from './../interface/pigdata.interface';
 import { EventEmitter, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import {  Observable, Subject } from 'rxjs';
 import { HttpgetService } from './httpget.service';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { ChartType } from 'angular-google-charts';
+import { chartTypeSetting } from '../pigtradeinformation/chart.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,50 +15,52 @@ export class PigTradeService {
 
   constructor(private httpGet: HttpgetService) { }
 
-  source$ = new Subject<string[][]>()
+  getPigFiler$ = new Subject<chartTypeSetting>();
 
-  getPigFiler$ = new BehaviorSubject([{ date: '', averagePrice: '' }]);
-  pigDataOK!: Observable<string[][]>
+  getPigData$ = new Observable<pigData[]>();
 
-  setPigData(marketName: string, startDay: Date, endDay: Date, topDays?: number) {
+  getAllPigData() {
+    this.getPigData$ = this.httpGet.getPigDataHttp();
+  }
+
+  setPigData(marketName: string, startDay: Date, endDay: Date) {
 
     let startDate = this.changeToTWFormate(startDay)//1110627
     let endDate = this.changeToTWFormate(endDay)//1110528
 
-    this.httpGet.getPigDataHttp(marketName, topDays).pipe(
-      map(data => {
+    this.getPigData$.pipe(  //這個取得的是該市場的所有資料
+    map(data => {
+      return data.filter(subData => {
+        return subData.market===marketName
+      })
+    }),
+    map(data => {
         return data.filter(subData => {
-
           return subData.date < (+endDate) && subData.date > (+startDate)
         })
       }),
       map(data => {
         return data.map(subData => {
-          return { date: subData.date.toString(), averagePrice: subData.averagePrice }
+          return [subData.date.toString(), subData.averagePrice]
         })
       }),
       map(data => {
         return data.reverse()
-
       })
     ).subscribe(
       data => {
-        this.getPigFiler$.next( data.reverse())
-       // this.dataChange.emit(data)
+        let setData:chartTypeSetting={
+           type: ChartType.LineChart,
+            data: data,
+          chartColumns: ['Date', 'Price'],
+        }
+
+
+        this.getPigFiler$.next(setData)
+
+        // this.dataChange.emit(data)
       }
     )
-
-
-    //這個取得的是該市場的所有資料
-
-
-    // let getRawPigData = this.httpGet.getPigDataHttp(marketName, topDays) //這個取得的是該市場的所有資料
-    // this.pigDataOK = this.dataChanged(getRawPigData, startDay, endDate)
-
-  }
-
-  getPigData() {
-    return this.pigDataOK
   }
 
   // 以下處理日期
@@ -81,24 +85,4 @@ export class PigTradeService {
     let date = this.setFrontZero(startDate.getDate());
     return year.toString() + month.toString() + date.toString()
   }
-
-  //處理資料
-  dataChanged(pigRawData: pigData[], startDay: string, endDate: string) {
-
-
-    // this.getDataSubscription=pigDateAndPrice.subscribe(
-    //   data => {
-    //     console.log(data)
-    //     this.chartData = {
-    //       type: ChartType.LineChart,
-    //       data: data,
-    //       chartColumns: ['Date', 'Price'],
-    //       width: this.chartWidth,
-    //       height: this.chartHeight
-    //     };
-    //     this.stillReading = false;
-    //   }
-    // )
-  }
-
 }

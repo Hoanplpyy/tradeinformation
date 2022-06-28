@@ -17,19 +17,17 @@ export class HttpgetService {
 
   constructor(private http: HttpClient) { }
 
-  getPigDataHttp(marketName: string, topData?: number) {
+  getPigDataHttp() {
 
-    let getUrl = this.pigUrl;
-    if (topData) {
-      getUrl = this.pigUrl + '?$top=' + topData.toString()
-    }
-    let searchParams = new HttpParams();
+    // let getUrl = this.pigUrl;
+    // if (topData) {
+    //   getUrl = this.pigUrl + '?$top=' + topData.toString()
+    // }
+    // let searchParams = new HttpParams();
 
-    searchParams = searchParams.append('MarketName', marketName);
+    // searchParams = searchParams.append('MarketName', marketName);
 
-    return this.http.get<pigDataTW[]>(getUrl, {
-      params: searchParams
-    }).pipe(
+    return this.http.get<pigDataTW[]>(this.pigUrl).pipe(
       map(data => {
         return data.map(subData => {
           let getSubData: pigData
@@ -75,7 +73,6 @@ export class HttpgetService {
           }
           return getSubData
         })
-
       }),
       shareReplay()
     );

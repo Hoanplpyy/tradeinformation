@@ -25,7 +25,7 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
 
   marketName = '新北市'
 
-
+  showData!: Observable<chartTypeSetting>
 
   getDataSubscription!: Subscription
 
@@ -56,48 +56,23 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // this.pigTradeService.dataChange.subscribe(
-    //   data=>{
-    //     console.log(data)
-    //   }
-    // )
+    this.stillReading = true;
 
 
-    this.pigTradeService.getPigFiler$.subscribe(
+    this.pigTradeService.getPigFiler$
+    .subscribe(
       data => {
+
         console.log(data)
+        this.chartData = {
+          type: data.type,
+          data: data.data,
+          chartColumns: data.chartColumns,
+        };
+        this.stillReading = false;
       }
     )
 
-
-
-    this.stillReading = false;
-    this.chartData = {
-      type: ChartType.LineChart,
-      data: this.myData,
-      chartColumns: ['Date', 'Price'],
-    };
-
-
-
-
-    // this.getDataSubscription = this.http.getData(this.marketName, 20).subscribe(data => {
-    //   console.log(data)
-    // })
-    //   data => {
-    // this.stillReading = true;
-
-    // this.http.getData().subscribe(
-    //   data => {
-
-    //     this.stillReading = false;
-    //     this.chartData = {
-    //       type: ChartType.LineChart,
-    //       data: data,
-    //       chartColumns: ['Date', 'Price'],
-    //     };
-    //   }
-    // )
 
 
 

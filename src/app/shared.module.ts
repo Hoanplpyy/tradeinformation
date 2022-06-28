@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,10 +11,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatListModule} from '@angular/material/list';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatMenuModule} from '@angular/material/menu';
-
+import { MatListModule } from '@angular/material/list';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   imports: [CommonModule],
   declarations: [],
@@ -30,6 +30,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatListModule,
     MatMenuModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDatepickerModule,

@@ -9,21 +9,21 @@
  */
 .out-container {
 
-  background-color: lightgray;
+  background-color: #383737;
 
 }
 
 .navigation {
-  background-color: lightcyan;
+  background-color:#f5efef;
 }
 
 .dashboard {
-  background-color: 	#fff1f1;
+  background-color: 	#f5efef;
 
 }
 
 .dashboard-information {
-  background-color: lightsalmon;
+  background-color: #f5efef;
 }
 
 .setting {

@@ -1,0 +1,11 @@
+.in-container{
+  height: 20vh;
+}
+
+.in-container-sm{
+  height: 28vh;
+}
+
+.in-container-xs{
+  height: 56vh;
+}
