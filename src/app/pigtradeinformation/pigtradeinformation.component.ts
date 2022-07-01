@@ -30,11 +30,11 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
   getDataSubscription!: Subscription
 
   myData = [
-    ['London', 8136000],
-    ['New York', 8538000],
-    ['Paris', 2244000],
-    ['Berlin', 3470000],
-    ['Kairo', 19500000],
+    ['London', 81,51],
+    ['New York', 85,61],
+    ['Paris', 22,27],
+    ['Berlin', 34,24],
+    ['Kairo', 19,16],
   ];
 
   chartData!: chartTypeSetting;
@@ -56,26 +56,23 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.stillReading = true;
+    // this.stillReading = true;
 
 
-    this.pigTradeService.getPigFiler$
-    .subscribe(
-      data => {
-
-        console.log(data)
-        this.chartData = {
-          type: data.type,
-          data: data.data,
-          chartColumns: data.chartColumns,
-        };
-        this.stillReading = false;
-      }
-    )
+    // this.pigTradeService.getPigFiler$
+    // .subscribe(
+    //   data => {
 
 
-
-
+    //     this.chartData = {
+    //       type: data.type,
+    //       data:this.myData,
+    //  //     data: data.data,
+    //       chartColumns: data.chartColumns,
+    //     };
+    //     this.stillReading = false;
+    //   }
+    // )
   }
 
 

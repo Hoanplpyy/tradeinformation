@@ -1,6 +1,6 @@
 import { pigData } from './../interface/pigdata.interface';
 import { EventEmitter, Injectable } from '@angular/core';
-import {  Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpgetService } from './httpget.service';
 import { map } from 'rxjs/operators';
 import { ChartType } from 'angular-google-charts';
@@ -11,13 +11,17 @@ import { chartTypeSetting } from '../pigtradeinformation/chart.interface';
 })
 export class PigTradeService {
 
-  dataChange = new EventEmitter<{ date: string, averagePrice: string }[]>();
+  // dataChange = new EventEmitter<{ date: string, averagePrice: string }[]>();
 
   constructor(private httpGet: HttpgetService) { }
 
   getPigFiler$ = new Subject<chartTypeSetting>();
 
   getPigData$ = new Observable<pigData[]>();
+
+  getMultiple!: string[][];
+
+  getMultipleColumn=['Date']
 
   getAllPigData() {
     this.getPigData$ = this.httpGet.getPigDataHttp();
@@ -28,13 +32,15 @@ export class PigTradeService {
     let startDate = this.changeToTWFormate(startDay)//1110627
     let endDate = this.changeToTWFormate(endDay)//1110528
 
+    this.getMultipleColumn=[...marketName]
+
     this.getPigData$.pipe(  //這個取得的是該市場的所有資料
-    map(data => {
-      return data.filter(subData => {
-        return subData.market===marketName
-      })
-    }),
-    map(data => {
+      map(data => {
+        return data.filter(subData => {
+          return subData.market === marketName
+        })
+      }),
+      map(data => {
         return data.filter(subData => {
           return subData.date < (+endDate) && subData.date > (+startDate)
         })
@@ -49,15 +55,13 @@ export class PigTradeService {
       })
     ).subscribe(
       data => {
-        let setData:chartTypeSetting={
-           type: ChartType.LineChart,
-            data: data,
-          chartColumns: ['Date', 'Price'],
+        // this.getMultiple=[...data];
+        let setData: chartTypeSetting = {
+          type: ChartType.LineChart,
+          data: data,
+          chartColumns: ['Date', 'PriceA', 'PriceB'],
         }
-
-
         this.getPigFiler$.next(setData)
-
         // this.dataChange.emit(data)
       }
     )
