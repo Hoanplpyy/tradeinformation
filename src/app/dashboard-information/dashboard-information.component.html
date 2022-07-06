@@ -19,18 +19,11 @@
     <h4>選擇要顯示的市場</h4>
 <!--  -->
  <!-- [(ngModel)]="market.trigger" -->
-      <mat-checkbox *ngFor="let market of marketArray;let i=index" #btnCheck
-      [checked]="market.trigger"    formControlName={{market.formControlName}}>
+
+      <mat-checkbox *ngFor="let market of marketArray;let i=index"
+      [checked]="market.trigger"   formControlName={{market.formControlName}}>
         {{market.market}}
       </mat-checkbox>
-
-      <!-- <mat-checkbox  id="checkedA" type="checkbox"
-      [checked]="marketTest[0].trigger" (click)="setCheckA()" [(ngModel)]="marketTest[0].trigger">
-        {{marketTest[0].name}}
-      </mat-checkbox> -->
-
-
-
   </div>
-  <button  #btnClick>click</button>
+
 </div>

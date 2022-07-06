@@ -56,23 +56,23 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // this.stillReading = true;
+    this.stillReading = true;
 
 
-    // this.pigTradeService.getPigFiler$
-    // .subscribe(
-    //   data => {
+    this.pigTradeService.getPigFiler$
+    .subscribe(
+      data => {
 
 
-    //     this.chartData = {
-    //       type: data.type,
-    //       data:this.myData,
-    //  //     data: data.data,
-    //       chartColumns: data.chartColumns,
-    //     };
-    //     this.stillReading = false;
-    //   }
-    // )
+        this.chartData = {
+          type: data.type,
+          data:this.myData,
+     //     data: data.data,
+          chartColumns: data.chartColumns,
+        };
+        this.stillReading = false;
+      }
+    )
   }
 
 
