@@ -54,24 +54,25 @@ export class DashboardInformationComponent implements OnInit {
   ngOnInit(): void {
 
 
-    // this.marketGroup.valueChanges.pipe(
-    //   // debounceTime(2000)
-    //   map(selected=>{
-    //     return Object.values<boolean>(selected)
-    //   })
+    this.marketGroup.valueChanges.pipe(
+      debounceTime(2000),
+      map((selected:selectedItem)=>{
+          return Object.keys(selected).filter(
+          key=>{
+            return selected[key]===true
+          }
+        )
+      }),
+    )
+    .subscribe(
+      (markets) => {
+        console.log(markets)
+      }
+    )
 
-    // ).subscribe(
-    //   (markets) => {
-    //     console.log(Object.keys(markets))
-    //     Object.keys(markets).map(
-    //       key => {
-    //         console.log(key)
-    //         console.log(Object.keys(markets[key]));
-    //       }
-    //     );
-    //   }
-    // )
 
+      let markets:string[]=this.marketGroup.value;
+      console.log(markets)
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
@@ -87,7 +88,7 @@ export class DashboardInformationComponent implements OnInit {
 
     this.pigTradeService.getAllPigData()
 
-    this.pigTradeService.setPigData(this.marketArray[0].market, startDay, endDay)
+    this.pigTradeService.setPigData(markets, startDay, endDay)
 
   }
 

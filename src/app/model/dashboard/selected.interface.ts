@@ -1,5 +1,5 @@
 export interface selectedItem {
-  newTaipei: boolean;
+  [newTaipei:string]: boolean;
   yilan: boolean;
   taoyuan: boolean;
   hsinchu: boolean;
