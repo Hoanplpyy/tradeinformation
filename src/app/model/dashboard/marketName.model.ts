@@ -1,4 +1,4 @@
-interface market {
+export interface market {
   market: string,
   formControlName:string,
   trigger: boolean

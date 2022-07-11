@@ -43,12 +43,12 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
     title: 'Pig',
     hAxis: {
       title: 'Date'
-      // , textStyle: {
-      //   fontSize: 18 // or the number you want
-      // }
+      , textStyle: {
+        fontSize: 18 // or the number you want
+      }
     },
+    legend: { position: 'bottom' },
     vAxis: { title: 'Price(NTD/kg)' },
-    legend: 'none',
     fontName: 'Times-Roman',
   };
 
@@ -62,12 +62,10 @@ export class PigtradeinformationComponent implements OnInit, OnDestroy {
     this.pigTradeService.getPigFiler$
     .subscribe(
       data => {
-
-
         this.chartData = {
           type: data.type,
-          data:this.myData,
-     //     data: data.data,
+        //  data:this.myData,
+          data: data.data,
           chartColumns: data.chartColumns,
         };
         this.stillReading = false;

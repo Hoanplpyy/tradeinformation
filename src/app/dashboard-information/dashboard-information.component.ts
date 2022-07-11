@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PigTradeService } from '../services/pig-trade.service';
 import { marketNameArray } from '../model/dashboard/marketName.model';
-import { debounceTime, filter, map } from 'rxjs/operators';
+import { debounceTime, filter, map, combineLatestWith, switchMap, mergeMap, concatMap, mergeAll, concatAll } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { market } from '../model/dashboard/marketName.model'
 
 
 
@@ -47,6 +49,11 @@ export class DashboardInformationComponent implements OnInit {
 
   marketArray = marketNameArray;
 
+  dateRange: number = 14;
+
+  marketObservable$ = new Observable<market[]>(observer => {
+    observer.next(marketNameArray)
+  })
 
   constructor(private pigTradeService: PigTradeService, private fb: FormBuilder) { }
 
@@ -55,29 +62,44 @@ export class DashboardInformationComponent implements OnInit {
 
 
     this.marketGroup.valueChanges.pipe(
-      debounceTime(2000),
-      map((selected:selectedItem)=>{
-          return Object.keys(selected).filter(
-          key=>{
-            return selected[key]===true
+      //   debounceTime(2000),
+      map((selected: selectedItem) => {
+        return Object.keys(selected).filter(
+          key => {
+            return selected[key] === true
           }
         )
       }),
-    )
-    .subscribe(
+      combineLatestWith(this.marketObservable$),
+      map(([keys, references]) => {
+        return keys.map(subKey => {
+          return references.filter(subReference => {
+            return subReference.formControlName === subKey
+          }).map(data => {
+            return data.market
+          })
+        })
+      }),
+      map(array => {
+        return ([] as string[]).concat(...array);
+      })
+    ).subscribe(
       (markets) => {
-        console.log(markets)
+        if (markets) {
+          this.pigTradeService.setPigData(markets, startDay, endDay, this.dateRange)
+        }
+
       }
     )
 
 
-      let markets:string[]=this.marketGroup.value;
-      console.log(markets)
+
+
     const today = new Date();
     const month = today.getMonth();
     const year = today.getFullYear();
     const day = today.getDate();
-    const start = today.getDate() - 14;
+    const start = today.getDate() - this.dateRange;
 
     let startDay = new Date(year, month, start)
     let endDay = new Date(year, month, day)
@@ -88,7 +110,7 @@ export class DashboardInformationComponent implements OnInit {
 
     this.pigTradeService.getAllPigData()
 
-    this.pigTradeService.setPigData(markets, startDay, endDay)
+    this.pigTradeService.setPigData([this.marketArray[0].market], startDay, endDay, this.dateRange)
 
   }
 
