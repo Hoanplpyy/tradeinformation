@@ -29,36 +29,33 @@ export class PigTradeService {
 
   setPigData(marketNames: string[], startDay: Date, endDay: Date) {
 
-    // let marketsObs$ = of(marketNames)
+    let marketsObs$ = of(marketNames)
     let startDate = this.changeToTWFormate(startDay)      //1110627
     let endDate = this.changeToTWFormate(endDay)          //1110528
     let tempMarket = marketNames
     let getMarketArray = ['date', ...tempMarket]
 
-    let aftDateFilter$ = this.getPigData$.pipe(  //這個取得的是該市場的所有資料
-      // combineLatestWith(marketsObs$),
-      map((pigData) => {
-        console.log(pigData)
-        // return market.map(subMarket => {
-
-        //   return pigData.filter((subPigData) => {
-            
-        //     return subPigData.market === subMarket        //原始資料市場 和 選取的目標市場 相同
-        //   })
-        // })
-        return pigData.filter((data) => marketNames.includes(data.market))
-      }),
-      map(data => {                             //這個取得時間範圍內的所有資料
-        // return data.map(subData => {
-          return data.filter(filterData => {
-            return filterData.date < (+endDate) && filterData.date > (+startDate)
-          })
-        // })
+    let aftDateFilter$ = this.getPigData$.pipe(  //這個取得的是該市場，時間範圍內的所有資料
+    combineLatestWith(marketsObs$),
+    map(([pigData, market]) => {
+      return market.map(subMarket => {
+        return pigData.filter((subPigData) => {
+          return subPigData.market === subMarket
+        })
       })
-    )
-
+    }),
+    map(data => {
+      return data.map(subData => {
+        return subData.filter(filterData => {
+          return filterData.date < (+endDate) && filterData.date > (+startDate)
+        })
+      })
+    })
+  )
+ //return pigData.filter((data) => marketNames.includes(data.market))
     let getDateArray$ = aftDateFilter$.pipe(   //取得市場中，沒有休市，最長的日期範圍
       map(data => {
+
         let longestLength = 0;
         let index = 0;
         for (let i = 0; i < data.length; i++) {
