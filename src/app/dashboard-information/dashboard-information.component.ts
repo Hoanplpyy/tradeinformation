@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PigTradeService } from '../services/pig-trade.service';
 import { marketNameArray } from '../model/dashboard/marketName.model';
 import { debounceTime, filter, map, combineLatestWith, switchMap, mergeMap, concatMap, mergeAll, concatAll } from 'rxjs/operators';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { market } from '../model/dashboard/marketName.model'
 
 
@@ -17,7 +17,7 @@ import { market } from '../model/dashboard/marketName.model'
 export class DashboardInformationComponent implements OnInit {
 
 
-  range = this.fb.group({
+  dateRange = this.fb.group({
     startDate: new FormControl(new Date()),
     endDate: new FormControl(new Date()),
   })
@@ -49,7 +49,7 @@ export class DashboardInformationComponent implements OnInit {
 
   marketArray = marketNameArray;
 
-  dateRange: number = 14;
+  dateInterval: number = 14;
 
   marketObservable$ = new Observable<market[]>(observer => {
     observer.next(marketNameArray)
@@ -60,9 +60,67 @@ export class DashboardInformationComponent implements OnInit {
 
   ngOnInit(): void {
 
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    const day = today.getDate();
+    const start = today.getDate() - this.dateInterval;
+
+    let startDay = new Date(year, month, start)
+    let endDay = new Date(year, month, day)
+    this.dateRange = new FormGroup({
+      startDate: new FormControl(startDay),
+      endDate: new FormControl(endDay),
+    });
 
     this.marketGroup.valueChanges.pipe(
-      //   debounceTime(2000),
+      // debounceTime(1000),
+      map((selected: selectedItem) => {
+        return selected
+      })
+    ).subscribe(
+      (markets) => {
+        if (markets) {
+          this.getCheckedMarkets(markets)
+        }
+      }
+    )
+
+    this.pigTradeService.getAllPigData()
+
+    this.pigTradeService.setPigData([this.marketArray[0].market], startDay, endDay)
+
+  }
+
+  onChangeDate() {
+
+    if (this.dateRange.value.startDate !== null && this.dateRange.value.endDate !== null) {
+      of(this.marketGroup.value).pipe(
+        map((selected: selectedItem) => {
+          return selected
+        })
+      ).subscribe(
+        (markets) => {
+          if (markets) {
+            this.getCheckedMarkets(markets)
+          }
+        }
+      )
+
+    }
+  }
+
+  getCheckedMarkets(rawMarkets: selectedItem, startDate?: Date, endDate?: Date) {
+
+    let startDay = this.dateRange.value.startDate;
+    let endDay = this.dateRange.value.endDate;
+    if (startDate != undefined && endDate != undefined) {
+      startDay = startDate;
+      endDay = endDate
+    }
+
+    of(rawMarkets).pipe(
+      // debounceTime(1000),
       map((selected: selectedItem) => {
         return Object.keys(selected).filter(
           key => {
@@ -86,35 +144,10 @@ export class DashboardInformationComponent implements OnInit {
     ).subscribe(
       (markets) => {
         if (markets) {
-          this.pigTradeService.setPigData(markets, startDay, endDay, this.dateRange)
+          this.pigTradeService.setPigData(markets, startDay, endDay)
         }
-
       }
     )
-
-
-
-
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
-    const day = today.getDate();
-    const start = today.getDate() - this.dateRange;
-
-    let startDay = new Date(year, month, start)
-    let endDay = new Date(year, month, day)
-    this.range = new FormGroup({
-      startDate: new FormControl(startDay),
-      endDate: new FormControl(endDay),
-    });
-
-    this.pigTradeService.getAllPigData()
-
-    this.pigTradeService.setPigData([this.marketArray[0].market], startDay, endDay, this.dateRange)
-
-  }
-
-  addEvent() {
 
   }
 

@@ -27,35 +27,37 @@ export class PigTradeService {
     this.getPigData$ = this.httpGet.getPigDataHttp();
   }
 
-  setPigData(marketName: string[], startDay: Date, endDay: Date, dayRange: number) {
-    console.log(marketName)
-    let marketsObs$ = of(marketName)
+  setPigData(marketNames: string[], startDay: Date, endDay: Date) {
 
-    let startDate = this.changeToTWFormate(startDay)//1110627
-    let endDate = this.changeToTWFormate(endDay)//1110528
-    let tempMarket = marketName
+    // let marketsObs$ = of(marketNames)
+    let startDate = this.changeToTWFormate(startDay)      //1110627
+    let endDate = this.changeToTWFormate(endDay)          //1110528
+    let tempMarket = marketNames
     let getMarketArray = ['date', ...tempMarket]
 
-    let aftDateFilter$ = this.getPigData$.pipe(  //這個取得的是該市場，時間範圍內的所有資料
-      combineLatestWith(marketsObs$),
-      map(([pigData, market]) => {
-        return market.map(subMarket => {
-          return pigData.filter((subPigData) => {
-            return subPigData.market === subMarket
-          })
-        })
+    let aftDateFilter$ = this.getPigData$.pipe(  //這個取得的是該市場的所有資料
+      // combineLatestWith(marketsObs$),
+      map((pigData) => {
+        console.log(pigData)
+        // return market.map(subMarket => {
+
+        //   return pigData.filter((subPigData) => {
+            
+        //     return subPigData.market === subMarket        //原始資料市場 和 選取的目標市場 相同
+        //   })
+        // })
+        return pigData.filter((data) => marketNames.includes(data.market))
       }),
-      map(data => {
-        return data.map(subData => {
-          return subData.filter(filterData => {
+      map(data => {                             //這個取得時間範圍內的所有資料
+        // return data.map(subData => {
+          return data.filter(filterData => {
             return filterData.date < (+endDate) && filterData.date > (+startDate)
           })
-        })
+        // })
       })
     )
 
-
-    let getDateArray$ = aftDateFilter$.pipe(   //取得最長的日期範圍
+    let getDateArray$ = aftDateFilter$.pipe(   //取得市場中，沒有休市，最長的日期範圍
       map(data => {
         let longestLength = 0;
         let index = 0;
@@ -97,12 +99,11 @@ export class PigTradeService {
                 price[i].splice(j, 0, { date: date[j], price: 'undefined' })
               }
             }
-          }else if(price[i].length===0){
+          }else if(price[i].length===0){            //代表該市場倒掉了，這段時間範圍都沒有資料，例如台中市
             price.splice(i,1)
             getMarketArray.splice(i+1,1)
           }
         }
-
         return price
       }),
       map(price => {
@@ -125,7 +126,7 @@ export class PigTradeService {
           }
           allArray.push(subArray)
         }
-        return allArray
+        return allArray.reverse()
       })
     ).subscribe(
       data => {

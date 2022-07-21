@@ -4,10 +4,10 @@
   <div fxFlex="30" fxFlex.sm="30" fxFlex.xs="30" class="data-selector">
     <mat-form-field appearance="outline">
       <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [formGroup]="range" [rangePicker]="picker" [comparisonStart]="range.value.startDate"
-        [comparisonEnd]="range.value.endDate">
+      <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker" [comparisonStart]="dateRange.value.startDate"
+        [comparisonEnd]="dateRange.value.endDate" >
         <input matStartDate formControlName="startDate" placeholder="Start date">
-        <input matEndDate (dateInput)="addEvent()" formControlName="endDate" placeholder="End date">
+        <input matEndDate (dateInput)="onChangeDate()" formControlName="endDate" placeholder="End date">
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
